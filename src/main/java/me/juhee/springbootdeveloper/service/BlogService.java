@@ -24,12 +24,12 @@ public class BlogService {
         return blogRepository.findAll();
     }
 
-    public Article findById(Long id) {
+    public Article findById(long id) {
         return blogRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("not found: " + id));
     }
 
-    public void delete(Long id) {
+    public void delete(long id) {
         Article article = blogRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("not found: " + id));
 
@@ -38,7 +38,7 @@ public class BlogService {
     }
 
     @Transactional
-    public Article update(Long id, UpdateArticleRequest updateArticleRequest) {
+    public Article update(long id, UpdateArticleRequest updateArticleRequest) {
         Article article = blogRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("not found: " + id));
 

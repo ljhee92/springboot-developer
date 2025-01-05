@@ -4,14 +4,6 @@ if (deleteButton) {
     deleteButton.addEventListener('click', event => {
         let id = document.getElementById('article-id').value;
 
-        // fetch(`/api/articles/${id}`, {
-        //     method: 'DELETE'
-        // })
-        //     .then(() => {
-        //         alert('삭제가 완료되었습니다.');
-        //         location.replace('/articles');
-        //     })
-
         function success() {
             alert('삭제가 완료되었습니다.');
             location.replace('/articles');
@@ -22,7 +14,7 @@ if (deleteButton) {
             location.replace('/articles');
         }
 
-        httpRequest("DELETE", "/api/articles" + id, null, success, fail);
+        httpRequest("DELETE", "/api/articles/" + id, null, success, fail);
     })
 }
 
@@ -33,22 +25,7 @@ if (modifyButton) {
         let params = new URLSearchParams(location.search);
         let id = params.get('id');
 
-        // fetch(`/api/articles/${id}`, {
-        //     method: 'PUT',
-        //     headers: {
-        //         "Content-Type" : "application/json",
-        //     },
-        //     body: JSON.stringify({
-        //         title: document.getElementById('title').value,
-        //         content: document.getElementById('content').value
-        //     })
-        // })
-        //     .then(() => {
-        //         alert('수정이 완료되었습니다.');
-        //         location.replace(`articles/${id}`);
-        //     })
-
-        body: JSON.stringify({
+        body = JSON.stringify({
             title: document.getElementById("title").value,
             content: document.getElementById("content").value,
         });
@@ -71,19 +48,6 @@ const createButton = document.getElementById("create-btn");
 
 if (createButton) {
     createButton.addEventListener("click", event => {
-        // fetch("/api/articles", {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type" : "application/json",
-        //     },
-        //     body: JSON.stringify({
-        //         title: document.getElementById("title").value,
-        //         content: document.getElementById("content").value,
-        //     }),
-        // }).then(() => {
-        //     alert('등록 완료되었습니다.');
-        //     location.replace("/articles");
-        // })
         body = JSON.stringify({
             title: document.getElementById("title").value,
             content: document.getElementById("content").value,
@@ -105,7 +69,7 @@ if (createButton) {
 
 function getCookie(key) {
     var result = null;
-    var cookie = document.compatMode.split(";");
+    var cookie = document.cookie.split(";");
     cookie.some(function (item) {
         item = item.replace(" ", "");
          var dic = item.split("=");
@@ -159,5 +123,5 @@ function httpRequest(method, url, body, success, fail) {
         } else {
             return fail();
         }
-    })
+    });
 }
