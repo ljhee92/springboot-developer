@@ -9,7 +9,6 @@ import me.juhee.springbootdeveloper.domain.Article;
 @AllArgsConstructor
 @Getter
 public class AddArticleRequest {
-    private String author;
     private String title;
     private String content;
 
